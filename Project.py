@@ -19,6 +19,12 @@ import re
 from datetime import date
 import pyautogui
 from playsound import playsound
+import keyboard
+from pynput.keyboard import Key,Controller
+from time import sleep
+import random
+
+keyboard = Controller()
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -120,7 +126,7 @@ def takeCommand():
     r = sr.Recognizer()
     with sr.Microphone() as source:
        print("Listening.....")
-       r.pause_threshold = 1
+       r.pause_threshold = 0.5
        r.energy_threshold = 300
        r.dynamic_energy_threshold = True
        audio = r.listen(source, 0, 4)
@@ -136,6 +142,19 @@ def takeCommand():
     return query
 
 
+def volumeup():
+    for i in range(5):
+        keyboard.press(Key.media_volume_up)
+        keyboard.release(Key.media_volume_up)
+        sleep(0.1)
+
+
+def volumedown():
+    for i in range(5):
+        keyboard.press(Key.media_volume_down)
+        keyboard.release(Key.media_volume_down)
+        sleep(0.1)
+
 
 
 
@@ -143,7 +162,7 @@ def takeCommand():
 if __name__ == '__main__':
 
     greetMe()
-    speak(" Hello, I Am Jarvis Sir . Please tell me,How can i Help you?")
+    speak(" Hello Sir I am jarvis. How can i Help you?")
    # username()
 while True:
     # if 1:
@@ -164,15 +183,9 @@ while True:
         elif "close" in query:
             closeappweb(query)
 
-
-
-
         elif 'the time' in query:
             strTime = datetime.datetime.now().strftime("%H:%M:%S")
             speak(f"Sir, the time is {strTime}")
-
-
-
 
         elif 'how are you' in query:
             speak(" I Am Fine,Thank you")
@@ -226,9 +239,6 @@ while True:
         elif 'camera' in query or'take a photo' in query:
             ec.capture(0,"Jarvis Camera","img.jpg")
 
-        elif 'help' in query:
-            speak("What Should I Help you With Sir")
-            help()
 
         elif "restart" in query:
             speak("Your Computer Will be Restarted Shortly,Sir")
@@ -257,7 +267,7 @@ while True:
             temp = data.find("div", class_="BNeawe").text
             speak(f"current{search} is {temp}")
 
-
+# Set An Alarm
         elif "alarm" in query:
             speak("Enter the Time!")
             time = input(":Enter the time")
@@ -275,12 +285,122 @@ while True:
                     break
 
 
-
-
-
         elif "sleep" in query:
             speak("Going to sleep,sir")
             exit()
+
+        elif "pause" in query:
+            pyautogui.press("k")
+            speak("Video Paused")
+
+        elif "play" in query:
+            pyautogui.press("k")
+            speak("Video Playing")
+
+        elif "mute" in query:
+            pyautogui.press("m")
+            speak("Video Muted")
+
+        elif "unmute" in query:
+            pyautogui.press("m")
+            speak("Video Unmuted")
+
+        elif "back" in query:
+            pyautogui.press("J")
+            speak("Video has been Rewinded by 10 seconds")
+
+        elif "forward" in query:
+            pyautogui.press("L")
+            speak("Video has been forwarded by 10 seconds")
+
+        elif "open the miniplayer" in query:
+            pyautogui.press("I")
+            speak("Video is Opening in the miniplayer")
+
+        elif "close the miniplayer" in query:
+            pyautogui.press("I")
+            speak("Video is not in miniplayer mode")
+
+        elif "Full Screen" in query:
+            pyautogui.press("F")
+            speak("Video is now in Full Screen")
+
+        elif " Full Screen Exit" in query:
+            pyautogui.press("F")
+            speak("Video is not in Full Screen")
+
+        elif "Activate Subtitles" in query:
+            pyautogui.press("C")
+            speak("Subtitles Activated")
+
+        elif "Deactivate Subtitles" in query:
+            pyautogui.press("C")
+            speak("Subtitles Deactivated")
+
+        elif "play the video from the start" in query:
+            pyautogui.press("0")
+            speak("Video is being played from the beginning")
+
+        elif "theatre mode" in query:
+            pyautogui.press("t")
+            speak("Video is being played in the theatre mode")
+
+        elif "volume up " in query:
+
+            speak("Turning Volume up,Sir")
+            volumeup()
+
+        elif "volume down " in query:
+            speak("Turning Volume down,Sir")
+            volumedown()
+
+        elif "tired" in query:
+            speak("Playing your favourite Songs,sir")
+            a = (1,2,3,4,5)
+            b = random.choice(a)
+            if b==1:
+                webbrowser.open("https://www.youtube.com/watch?v=syFZfO_wfMQ")
+            elif b==2:
+                webbrowser.open("https://www.youtube.com/watch?v=_fqpk3cXG-U")
+
+            elif b==3:
+                webbrowser.open("https://www.youtube.com/watch?v=qPPdjjEAbMM")
+
+            elif b==4:
+                webbrowser.open("https://www.youtube.com/watch?v=WAEUgfHUHBQ")
+
+            elif b==5:
+                webbrowser.open("https://www.youtube.com/watch?v=SmaY7RfBgas")
+
+
+        elif "news" in query:
+           from NewsRead import latestnews
+           latestnews()
+
+        elif "calculate" in query:
+            from Calculatenumbers import Wolframalpha
+            from Calculatenumbers import calc
+            query = query.replace("Calculate","")
+            query = query.replace("jarvis","")
+            calc(query)
+
+        elif "whatsapp" in query:
+            from Whatsapp import sendwhatmsg_instantly
+            sendwhatmsg_instantly()
+
+        elif "send message in group" in query:
+            from Whatsapp import sendwhatmsg_to_group_instantly
+            sendwhatmsg_to_group_instantly()
+
+
+
+
+
+
+
+
+
+
 
 
 
