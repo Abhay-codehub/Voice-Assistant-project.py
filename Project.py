@@ -24,6 +24,8 @@ from pynput.keyboard import Key,Controller
 from time import sleep
 import random
 import pywhatkit
+from flask import Flask,request
+
 keyboard = Controller()
 
 engine = pyttsx3.init('sapi5')
@@ -155,6 +157,12 @@ def volumedown():
         keyboard.release(Key.media_volume_down)
         sleep(0.1)
 
+def start_server(port=8000, print_msg=True):
+    if print_msg:
+        print("Server started at local_ip_of_this_pc:%s" % port)
+        print("Print Ctrl+C to exit")
+    app = Flask("app")
+    app.run(host="0.0.0.0", port=port)
 
 
 
@@ -399,8 +407,10 @@ while True:
             playonyoutube()
 
         elif"start server" in query:
+
          speak("Strting the server")
          pywhatkit.start_server()
+
 
 
 
