@@ -23,7 +23,7 @@ import keyboard
 from pynput.keyboard import Key,Controller
 from time import sleep
 import random
-
+import pywhatkit
 keyboard = Controller()
 
 engine = pyttsx3.init('sapi5')
@@ -393,9 +393,14 @@ while True:
             sendwhatmsg_to_group_instantly()
 
 
+        elif "the video on youtube" in query:
+            speak("Playing the video")
+            from Whatsapp import playonyoutube
+            playonyoutube()
 
-
-
+        elif"start server" in query:
+         speak("Strting the server")
+         pywhatkit.start_server()
 
 
 

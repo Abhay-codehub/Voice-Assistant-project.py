@@ -70,3 +70,14 @@ def sendwhatmsg_to_group_instantly():
         message = str(input("Enter the message-"))
         pywhatkit.sendwhatmsg_to_group_instantly("BkaKn69NwxmDkG0Fxmzor3",message,wait_time=15)
 
+def playonyoutube():
+    speak("What Do u Want to Play,Sir")
+    a = int(input('''Pywhatkit-1
+    One Direction Night Changes - 2'''))
+    if a==1:
+     speak("Playing Pywhatkit Video On Youtube")
+     pywhatkit.playonyt("pywhatkit")
+    elif a==2:
+        speak("Palying The SOng")
+        pywhatkit.playonyt("ONE DIRECTION NIGHT CHANGES")
+
