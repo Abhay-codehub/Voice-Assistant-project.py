@@ -43,7 +43,8 @@ update = int((datetime.now()+timedelta(minutes = 2)).strftime("%M"))
 def sendwhatmsg_instantly():
     speak("Who Do u want TO Message")
     a = int(input('''Yash Tandon - 1  
-    Sambit - 2 '''))
+    Sambit - 2 
+    Mummy - 3 '''))
     if a==1:
         speak("Whats the Message")
         message = str(input("Enter the message-"))
@@ -54,6 +55,11 @@ def sendwhatmsg_instantly():
         speak("Whats the Message")
         message = str(input("Enter the message-"))
         pywhatkit.sendwhatmsg_instantly("+91-8763532489", message,wait_time= 15)
+
+    elif a==3:
+        speak("What is the message u want to send to mummy")
+        message = str(input("Enter the message"))
+        pywhatkit.sendwhatmsg_instantly("+91-9389815891", message,wait_time=15)
 
 def sendwhatmsg_to_group_instantly():
     speak("Who Do U  want to message")
