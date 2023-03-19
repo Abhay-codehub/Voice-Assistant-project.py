@@ -157,21 +157,21 @@ def username():
  speak("How can I hElp You, Sir")"""
 
 
-def volumeup(): #It is used to increase the volume up function
+def volumeup():  # It is used to increase the volume up function
     for i in range(5):
         keyboard.press(Key.media_volume_up)
         keyboard.release(Key.media_volume_up)
         sleep(0.1)
 
 
-def volumedown(): # It is used to decrease the volume down function
+def volumedown():  # It is used to decrease the volume down function
     for i in range(5):
         keyboard.press(Key.media_volume_down)
         keyboard.release(Key.media_volume_down)
         sleep(0.1)
 
 
-def start_server(port=8000, print_msg=True): #It is used to start the server
+def start_server(port=8000, print_msg=True):  # It is used to start the server
     if print_msg:
         print("Server started at local_ip_of_this_pc:%s" % port)
         print("Print Ctrl+C to exit")
@@ -328,7 +328,7 @@ if __name__ == '__main__':
                             break
 
 
-#Youtube Automation
+                # Youtube Automation
                 elif "pause" in query:
                     pyautogui.press("k")
                     speak("Video Paused")
@@ -495,3 +495,6 @@ if __name__ == '__main__':
                 elif "screenshot" in query:
                     im = pyautogui.screenshot()
                     im.save("ss.jpg")
+
+
+               from
